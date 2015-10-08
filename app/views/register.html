@@ -1,0 +1,66 @@
+<section class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title text-center">Register</div>
+                </div>
+                <div class="panel-body">
+                    <form name="registerForm" id="registerForm" class="common-form form-horizontal">
+                        <div class="form-group">
+                            <label for="username" class="col-md-3">Username</label>
+                            <div class="col-md-9">
+                                <input id="username" type="text" ng-model="registerCtrl.registerData.username" class="form-control" name="username" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName" class="col-md-3">First Name</label>
+                            <div class="col-md-9">
+                                <input id="firstName" type="text" ng-model="registerCtrl.registerData.firstName" class="form-control" name="firstName" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="col-md-3">Last Name</label>
+                            <div class="col-md-9">
+                                <input id="lastName" type="text" ng-model="registerCtrl.registerData.lastName" class="form-control" name="lastName" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-md-3">Password</label>
+                            <div class="col-md-9">
+                                <input id="password" type="text" ng-model="registerCtrl.registerData.password" class="form-control" name="password" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="passwordConfirmation" class="col-md-3">Confirm Password</label>
+                            <div class="col-md-9">
+                                <input id="passwordConfirmation" type="text" ng-model="registerCtrl.registerData.passwordConfirmation" class="form-control" name="passwordConfirmation" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-md-3">Email</label>
+                            <div class="col-md-9">
+                                <input id="email" type="text" ng-model="registerCtrl.registerData.email" class="form-control" name="email" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthDate" class="col-md-3">Birth Date</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" datepicker-popup="MM-dd-yyyy" ng-model="registerCtrl.registerData.birthDate" is-open="registerCtrl.status.opened" max-date="registerCtrl.maxDate" datepicker-options="registerCtrl.dateOptions" close-text="Close" />
+                                <span class="form-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="registerCtrl.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <!-- Button -->
+                            <div class="col-sm-12 controls">
+                                <button ng-click="registerCtrl.register()" class="btn btn-primary"><i class="glyphicon glyphicon-log-in"></i> Log in</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

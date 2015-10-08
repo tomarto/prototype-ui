@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+	<div class="panel-heading">My Actions</div>
+	
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Created Date</th>
+				<th>Due Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="action in actionCtrl.actions">
+				<td>{{action.id}}</td>
+				<td>{{action.name}}</td>
+				<td>{{action.createdDate}}</td>
+				<td>{{action.dueDate}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
