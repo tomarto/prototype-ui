@@ -72,7 +72,7 @@
                             $rootScope.$broadcast('login', response.data.result);
                             deferred.resolve(response.data.result);
                         }, function(response) {
-                            deferred.reject(response);
+                            deferred.reject(response.data);
                         });
                 }
 
@@ -90,7 +90,7 @@
                     .then(function(response) {
                         deferred.resolve(response.data.result);
                     }, function(response) {
-                        deferred.reject(response);
+                        deferred.reject(response.data);
                     });
 
                 return deferred.promise;

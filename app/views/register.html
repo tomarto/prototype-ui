@@ -46,16 +46,18 @@
                         <div class="form-group">
                             <label for="birthDate" class="col-md-3">Birth Date</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" datepicker-popup="MM-dd-yyyy" ng-model="registerCtrl.registerData.birthDate" is-open="registerCtrl.status.opened" max-date="registerCtrl.maxDate" datepicker-options="registerCtrl.dateOptions" close-text="Close" />
-                                <span class="form-group-btn">
-                                    <button type="button" class="btn btn-default" ng-click="registerCtrl.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-                                </span>
+                                <p class="input-group">
+                                    <input type="text" class="form-control" datepicker-popup="MM-dd-yyyy" ng-model="registerCtrl.registerData.birthDate" is-open="registerCtrl.status.opened" max-date="registerCtrl.maxDate" datepicker-options="registerCtrl.dateOptions" close-text="Close" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="registerCtrl.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
                             </div>
                         </div>
                         <div class="form-group">
                             <!-- Button -->
                             <div class="col-sm-12 controls">
-                                <button ng-click="registerCtrl.register()" class="btn btn-primary"><i class="glyphicon glyphicon-log-in"></i> Log in</button>
+                                <button ng-click="registerCtrl.register()" class="btn btn-primary"><i class="glyphicon glyphicon-log-in"></i> Register</button>
                             </div>
                         </div>
                     </form>

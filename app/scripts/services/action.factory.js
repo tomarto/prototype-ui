@@ -29,7 +29,7 @@
                             actionsCache.put('cachedActions', response.data.result);
                             deferred.resolve(response.data.result);
                         }, function(response) {
-                            deferred.reject(response);
+                            deferred.reject(response.data);
                         });
                 }
 

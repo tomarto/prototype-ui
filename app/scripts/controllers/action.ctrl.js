@@ -13,10 +13,14 @@
         .controller('ActionCtrl', ActionCtrl);
 
     /* @ngInject */
-    function ActionCtrl($state, $sessionStorage, actions) {
+    function ActionCtrl($scope, $state, $sessionStorage, actions) {
         if ($sessionStorage.loggedUser) {
             var vm = this;
-            vm.actions = actions;
+            if(actions.errorMessage) {
+                $scope.$emit('error', actions.errorMessage);
+            } else {
+                vm.actions = actions;
+            }
         } else {
             $state.go('home', {}, {location: 'replace'});
         }

@@ -35,7 +35,7 @@
                     $state.go('login');
                     $scope.$emit('success', 'You have been successfully registered.');
                 }, function(response) {
-                    $scope.$emit('error',
+                    $scope.$emit('error', response.errorMessage ? response.errorMessage :
                         'An error ocurred while trying to register user. Please try again later.');
                 });
         };
