@@ -82,7 +82,7 @@
                         <div class="form-group">
                             <!-- Button -->
                             <div class="col-sm-12 controls">
-                                <button ng-click="registerCtrl.register(registerForm)" ng-disabled="registerForm.$invalid" class="btn btn-primary"><i class="glyphicon glyphicon-log-in"></i> Register</button>
+                                <button ng-click="registerCtrl.register(registerForm)" ng-disabled="registerForm.$invalid || registerForm.passwordConfirmation.$viewValue != registerForm.password.$modelValue" class="btn btn-primary"><i class="glyphicon glyphicon-log-in"></i> Register</button>
                             </div>
                         </div>
                     </form>
