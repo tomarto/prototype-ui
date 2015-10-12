@@ -28,16 +28,18 @@
             vm.status.opened = true;
         };
 
-        vm.register = function() {
-            userFactory.register(vm.registerData)
-                .then(function(response) {
-                    $scope.$emit('error', undefined);
-                    $state.go('login');
-                    $scope.$emit('success', 'You have been successfully registered.');
-                }, function(response) {
-                    $scope.$emit('error', response.errorMessage ? response.errorMessage :
-                        'An error ocurred while trying to register user. Please try again later.');
-                });
+        vm.register = function(registerForm) {
+            if (registerForm.$valid) {
+                userFactory.register(vm.registerData)
+                    .then(function(response) {
+                        $scope.$emit('error', undefined);
+                        $state.go('login');
+                        $scope.$emit('success', 'You have been successfully registered.');
+                    }, function(response) {
+                        $scope.$emit('error', response.errorMessage ? response.errorMessage :
+                            'An error ocurred while trying to register user. Please try again later.');
+                    });
+            }
         };
     }
 })();
