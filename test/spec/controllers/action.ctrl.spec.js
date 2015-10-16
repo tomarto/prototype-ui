@@ -2,12 +2,12 @@
 
 describe('Controller: ActionCtrl', function () {
 
-    // load the controller's module
-    beforeEach(module('myApp'));
-
     var ActionCtrl,
         scope;
 
+     // load the controller's module
+    beforeEach(module('myApp'));
+    
     // Initialize the controller and a mock scope
     beforeEach(inject(function (_$controller_, _$rootScope_, _$state_) {
         scope = _$rootScope_.$new();

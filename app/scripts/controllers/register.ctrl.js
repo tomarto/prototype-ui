@@ -12,7 +12,7 @@
         .controller('RegisterCtrl', RegisterCtrl);
 
     /* @ngInject */
-    function RegisterCtrl($scope, $state, $filter, userFactory) {
+    function RegisterCtrl($scope, $state, userFactory) {
         var vm = this;
         vm.registerData = {};
         vm.maxDate = new Date();
