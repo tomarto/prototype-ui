@@ -12,7 +12,8 @@
         .module('myApp', [
             'ui.router',
             'ui.bootstrap',
-            'ngStorage'
+            'ngStorage',
+            'treasure-overlay-spinner'
         ])
         .config(config);
 

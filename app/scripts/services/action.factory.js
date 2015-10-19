@@ -13,7 +13,7 @@
         .factory('actionFactory', actionFactory);
 
     /* @ngInject */
-    function actionFactory($http, $q, $cacheFactory, config) {
+    function actionFactory($http, $q, $cacheFactory, config, pendingRequestFactory) {
         var actionsCache = $cacheFactory('actions'),
             factory = {
                 getActions: getActions
@@ -23,17 +23,26 @@
 
         function getActions() {
             var deferred = $q.defer(),
-                cachedActions = actionsCache.get('cachedActions');
+                cachedActions = actionsCache.get('cachedActions'),
+                request,
+                requestOptions;
 
             if (cachedActions) {
                 deferred.resolve(cachedActions);
             } else {
-                $http.get(config.api.actions)
+                request = pendingRequestFactory.register();
+                requestOptions = {
+                    timeout: request.timeoutPromise
+                };
+
+                $http.get(config.api.actions, requestOptions)
                     .then(function(response) {
                         actionsCache.put('cachedActions', response.data.result);
                         deferred.resolve(response.data.result);
+                        pendingRequestFactory.complete(request);
                     }, function(response) {
                         deferred.reject(response.data);
+                        pendingRequestFactory.complete(request);
                     });
             }
 
