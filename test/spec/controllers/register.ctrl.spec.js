@@ -12,9 +12,9 @@ describe('Controller: RegisterCtrl', function () {
     beforeEach(
         module(function($provide) {
             $provide.value('userFactory', {
-                register: function(registerData) {
+                register: function() {
                     return {
-                        then: function(resolve, reject) {
+                        then: function(resolve) {
                             return resolve('resolved');
                         }
                     };

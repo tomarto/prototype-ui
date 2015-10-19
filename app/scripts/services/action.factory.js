@@ -1,9 +1,9 @@
 /**
  * @ngdoc function
  * @name myApp.factory:actionFactory
- * @description
+ * @desc
  * # actionFactory
- * Factory of the myApp
+ * Factory for Actions
  */
 (function() {
     'use strict';
@@ -14,27 +14,30 @@
 
     /* @ngInject */
     function actionFactory($http, $q, $cacheFactory, config) {
-        var actionsCache = $cacheFactory('actions');
+        var actionsCache = $cacheFactory('actions'),
+            factory = {
+                getActions: getActions
+            };
 
-        return {
-            getActions: function() {
-                var deferred = $q.defer(),
-                    cachedActions = actionsCache.get('cachedActions');
+        return factory;
 
-                if (cachedActions) {
-                    deferred.resolve(cachedActions);
-                } else {
-                    $http.get(config.api.actions)
-                        .then(function(response) {
-                            actionsCache.put('cachedActions', response.data.result);
-                            deferred.resolve(response.data.result);
-                        }, function(response) {
-                            deferred.reject(response.data);
-                        });
-                }
+        function getActions() {
+            var deferred = $q.defer(),
+                cachedActions = actionsCache.get('cachedActions');
 
-                return deferred.promise;
+            if (cachedActions) {
+                deferred.resolve(cachedActions);
+            } else {
+                $http.get(config.api.actions)
+                    .then(function(response) {
+                        actionsCache.put('cachedActions', response.data.result);
+                        deferred.resolve(response.data.result);
+                    }, function(response) {
+                        deferred.reject(response.data);
+                    });
             }
-        };
+
+            return deferred.promise;
+        }
     }
 })();

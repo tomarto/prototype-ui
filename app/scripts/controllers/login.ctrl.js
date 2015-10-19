@@ -1,9 +1,9 @@
 /**
  * @ngdoc function
  * @name myApp.controller:LoginCtrl
- * @description
+ * @desc
  * # Login
- * Controller of the myApp
+ * Controller to login to myApp
  */
 (function() {
     'use strict';
@@ -13,25 +13,28 @@
         .controller('LoginCtrl', LoginCtrl);
 
     /* @ngInject */
-    function LoginCtrl($scope, $state, userFactory) {
+    function LoginCtrl($state, config, eventFactory, userFactory) {
         var vm = this;
+
         vm.credentials = {};
 
-        vm.login = function() {
+        vm.login = login;
+
+        function login() {
             userFactory.login(vm.credentials)
                 .then(function(response) {
                     userFactory.getUser()
                         .then(function(response) {
-                            $scope.$emit('error', undefined);
+                            eventFactory.broadcastError(undefined);
                             $state.go('actions');
                         }, function(response) {
-                            $scope.$emit('error',
-                                'An error ocurred while logging in. Please try again later.');
+                            eventFactory.broadcastSuccess(undefined);
+                            eventFactory.broadcastError(config.login.error);
                         });
                 }, function(response) {
-                    $scope.$emit('error',
-                        'An error ocurred while logging in. Please try again later.');
+                    eventFactory.broadcastSuccess(undefined);
+                    eventFactory.broadcastError(config.login.error);
                 });
-        };
+        }
     }
 })();

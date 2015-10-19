@@ -71,7 +71,7 @@
                                 <p class="input-group">
                                     <input id="birthDate" type="text" class="form-control" name="birthDate" datepicker-popup="MM/dd/yyyy" ng-model="registerCtrl.registerData.birthDate" is-open="registerCtrl.status.opened" max-date="registerCtrl.maxDate" datepicker-options="registerCtrl.dateOptions" close-text="Close" ng-pattern="/^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/">
                                     <span class="input-group-btn">
-                                        <button type="button" class="btn btn-default" ng-click="registerCtrl.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                        <button type="button" class="btn btn-default" ng-click="registerCtrl.openDatepicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                                     </span>
                                 </p>
                                 <div role="alert">

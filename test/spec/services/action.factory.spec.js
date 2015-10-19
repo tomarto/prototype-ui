@@ -26,7 +26,7 @@ describe('Factory: actionFactory', function () {
             expect(response[0].id).toBe(mockedResult.result[0].id);
         };
 
-        var reject = function(response) {};
+        var reject = function() {};
 
         http.expectGET('prototype/actions').respond(200, mockedResult);
 

@@ -12,16 +12,16 @@ describe('Controller: LoginCtrl', function () {
     beforeEach(
         module(function($provide) {
             $provide.value('userFactory', {
-                login: function(credencials) {
+                login: function() {
                     return {
-                        then: function(resolve, reject) {
+                        then: function(resolve) {
                             return resolve('resolved');
                         }
                     };
                 },
                 getUser: function() {
                     return {
-                        then: function(resolve, reject) {
+                        then: function(resolve) {
                             return resolve('resolved');
                         }
                     };

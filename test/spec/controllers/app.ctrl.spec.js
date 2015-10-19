@@ -10,7 +10,7 @@ describe('Controller: AppCtrl', function () {
 
     // load the controller's module
     beforeEach(module('myApp'));
-    
+
     beforeEach(
         module(function($provide) {
             $provide.value('userFactory', {
@@ -29,7 +29,7 @@ describe('Controller: AppCtrl', function () {
 
             mockCacheFactory = {
                 info: function() {}
-            }
+            };
 
             return null;
         })

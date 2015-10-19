@@ -1,9 +1,8 @@
 /**
  * @ngdoc overview
  * @name myApp
- * @description
+ * @desc
  * # myApp
- *
  * Main module of the application.
  */
 (function() {

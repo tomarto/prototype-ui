@@ -1,9 +1,9 @@
 /**
  * @ngdoc config
  * @name myApp.config
- * @description
+ * @desc
  * # config
- * Config of the myApp
+ * Constant for myApp
  */
 (function() {
     'use strict';
@@ -19,6 +19,9 @@
                     register: 'prototype/user/register'
                 },
                 actions: 'prototype/actions'
+            },
+            login: {
+                error: 'An error ocurred while logging in. Please try again later.'
             }
         });
 })();

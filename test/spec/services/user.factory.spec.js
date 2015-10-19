@@ -26,7 +26,7 @@ describe('Factory: userFactory', function () {
             expect(response).toBe('Success');
         };
 
-        var reject = function(response) {};
+        var reject = function() {};
 
         http.expectPOST('prototype/login').respond(200, 'Success');
 
@@ -43,7 +43,7 @@ describe('Factory: userFactory', function () {
             expect(response).toBe('Success');
         };
 
-        var reject = function(response) {};
+        var reject = function() {};
 
         http.expectPOST('prototype/logout').respond(200, 'Success');
 
@@ -62,7 +62,7 @@ describe('Factory: userFactory', function () {
             expect(response.lastName).toBe(mockedUser.result.lastName);
         };
 
-        var reject = function(response) {};
+        var reject = function() {};
 
         http.expectPOST('prototype/user').respond(200, mockedUser);
 
@@ -81,7 +81,7 @@ describe('Factory: userFactory', function () {
             expect(response.lastName).toBe(mockedUser.result.lastName);
         };
 
-        var reject = function(response) {};
+        var reject = function() {};
 
         http.expectPOST('prototype/user/register').respond(200, mockedUser);
 

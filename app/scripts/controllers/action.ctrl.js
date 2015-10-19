@@ -1,11 +1,11 @@
 /**
  * @ngdoc function
  * @name myApp.controller:ActionCtrl
- * @description
+ * @desc
  * # ActionCtrl
- * Controller of the myApp
+ * Controller for Actions
  */
- (function() {
+(function() {
     'use strict';
 
     angular
@@ -13,16 +13,21 @@
         .controller('ActionCtrl', ActionCtrl);
 
     /* @ngInject */
-    function ActionCtrl($scope, $state, $sessionStorage, actions) {
-        if ($sessionStorage.loggedUser) {
-            var vm = this;
-            if (actions.errorMessage) {
-                $scope.$emit('error', actions.errorMessage);
+    function ActionCtrl($state, $sessionStorage, actions, eventFactory) {
+        var vm = this;
+
+        activate();
+
+        function activate() {
+            if ($sessionStorage.loggedUser) {
+                if (actions.errorMessage) {
+                    eventFactory.broadcastError(actions.errorMessage);
+                } else {
+                    vm.actions = actions;
+                }
             } else {
-                vm.actions = actions;
+                $state.go('home', {}, {location: 'replace'});
             }
-        } else {
-            $state.go('home', {}, {location: 'replace'});
         }
     }
 })();
