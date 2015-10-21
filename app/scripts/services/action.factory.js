@@ -13,7 +13,7 @@
         .factory('actionFactory', actionFactory);
 
     /* @ngInject */
-    function actionFactory($http, $q, $cacheFactory, config, pendingRequestFactory) {
+    function actionFactory($http, $q, $cacheFactory, $sessionStorage, config, pendingRequestFactory) {
         var actionsCache = $cacheFactory('actions'),
             factory = {
                 getActions: getActions
@@ -21,9 +21,10 @@
 
         return factory;
 
-        function getActions() {
+        function getActions(searchId) {
             var deferred = $q.defer(),
-                cachedActions = actionsCache.get('cachedActions'),
+                cachedActions = actionsCache.get(searchId),
+                params = angular.copy($sessionStorage[searchId]),
                 request,
                 requestOptions;
 
@@ -32,12 +33,13 @@
             } else {
                 request = pendingRequestFactory.register();
                 requestOptions = {
+                    params: params,
                     timeout: request.timeoutPromise
                 };
 
                 $http.get(config.api.actions, requestOptions)
                     .then(function(response) {
-                        actionsCache.put('cachedActions', response.data.result);
+                        actionsCache.put(searchId, response.data.result);
                         deferred.resolve(response.data.result);
                         pendingRequestFactory.complete(request);
                     }, function(response) {
@@ -47,6 +49,10 @@
             }
 
             return deferred.promise;
+        }
+
+        function getFormattedDate(date) {
+            return date ? (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear() : date;
         }
     }
 })();

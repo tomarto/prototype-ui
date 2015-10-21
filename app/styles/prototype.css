@@ -1,3 +1,9 @@
 .common-form .input-group {
     margin-bottom: 10px;
 }
+
+.input-group .form-control,
+.input-group-btn:last-child > .btn,
+.input-group-btn:last-child > .btn-group {
+    z-index: 0;
+}

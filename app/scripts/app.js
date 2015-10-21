@@ -37,13 +37,13 @@
                 controllerAs: 'registerCtrl'
             })
             .state('actions', {
-                url: '/actions',
+                url: '/actions?searchId',
                 templateUrl: 'views/actions.html',
                 controller: 'ActionCtrl',
                 controllerAs: 'actionCtrl',
                 resolve: {
-                    actions: function(actionFactory) {
-                        return actionFactory.getActions();
+                    actions: function(actionFactory, $stateParams) {
+                        return actionFactory.getActions($stateParams.searchId);
                     }
                 }
             });

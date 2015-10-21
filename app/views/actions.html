@@ -1,22 +1,82 @@
-<div class="panel panel-default">
-	<div class="panel-heading">My Actions</div>
-	
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Name</th>
-				<th>Created Date</th>
-				<th>Due Date</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr data-ng-repeat="action in actionCtrl.actions">
-				<td>{{action.id}}</td>
-				<td>{{action.name}}</td>
-				<td>{{action.createdDate}}</td>
-				<td>{{action.dueDate}}</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+<div>
+	<h3>Search Actions</h3>
+	<form class="form-horizontal" novalidate name="searchActionsForm" id="searchActionsForm">
+		<div class="form-group">
+			<label for="id" class="col-sm-2 control-label">Action Id:</label>
+			<div class="col-sm-4">
+				<input type="number" id="id" name="id" class="form-control" ng-model="actionCtrl.data.id" placeholder="Action Id">
+			</div>
+
+			<div ng-class="searchActionsForm.name.$dirty && searchActionsForm.name.$invalid ? 'has-error' : ''">
+				<label for="name" class="col-sm-2 control-label">Action Name:</label>
+				<div class="col-sm-4">
+					<input type="text" id="name" name="name" class="form-control" ng-model="actionCtrl.data.name" placeholder="Action Name" ng-pattern="/^([a-zA-Z1-9 ]){0,50}$/">
+					<div role="alert">
+	                    <span class="error control-label" ng-show="searchActionsForm.name.$dirty && searchActionsForm.name.$invalid">Action Name accepts only alphanumeric spaces up to 50 characters</span>
+	                </div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div ng-class="searchActionsForm.createdDate.$dirty && searchActionsForm.createdDate.$invalid ? 'has-error' : ''">
+				<label for="createdDate" class="col-sm-2 control-label">Created Date:</label>
+				<div class="col-sm-4">
+					<p class="input-group">
+	                    <input type="text" id="createdDate" name="createdDate" class="form-control" datepicker-popup="MM/dd/yyyy" ng-model="actionCtrl.data.createdDate" is-open="actionCtrl.createdDate.opened" max-date="actionCtrl.createdDate.maxDate" datepicker-options="actionCtrl.dateOptions" close-text="Close" ng-pattern="/^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/" placeholder="Created Date">
+	                    <span class="input-group-btn">
+	                        <button type="button" class="btn btn-default" ng-click="actionCtrl.openDatepicker('createdDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+	                    </span>
+	                </p>
+	                <div role="alert">
+	                    <span class="error control-label" ng-show="searchActionsForm.createdDate.$dirty && searchActionsForm.createdDate.$invalid">Please introduce a valid date in format mm/dd/yyyy</span>
+	                </div>
+				</div>
+			</div>
+
+			<div ng-class="searchActionsForm.dueDate.$dirty && searchActionsForm.dueDate.$invalid ? 'has-error' : ''">
+				<label for="dueDate" class="col-sm-2 control-label">Due Date:</label>
+				<div class="col-sm-4">
+					<p class="input-group">
+	                    <input id="dueDate" type="text" class="form-control" name="dueDate" datepicker-popup="MM/dd/yyyy" ng-model="actionCtrl.data.dueDate" is-open="actionCtrl.dueDate.opened" min-date="actionCtrl.dueDate.minDate" datepicker-options="actionCtrl.dateOptions" close-text="Close" ng-pattern="/^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/" placeholder="Due Date">
+	                    <span class="input-group-btn">
+	                        <button type="button" class="btn btn-default" ng-click="actionCtrl.openDatepicker('dueDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+	                    </span>
+	                </p>
+	                <div role="alert">
+	                    <span class="error control-label" ng-show="searchActionsForm.dueDate.$dirty && searchActionsForm.dueDate.$invalid">Please introduce a valid date in format mm/dd/yyyy</span>
+	                </div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button class="btn btn-primary" ng-click="actionCtrl.search(searchActionsForm)" ng-disabled="searchActionsForm.$pristine || searchActionsForm.$invalid">Search</button>
+			</div>
+		</div>
+	</form>
+
+	<hr/>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">My Actions</div>
+		
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Created Date</th>
+					<th>Due Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="action in actionCtrl.actions">
+					<td>{{action.id}}</td>
+					<td>{{action.name}}</td>
+					<td>{{action.createdDate}}</td>
+					<td>{{action.dueDate}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+<div>

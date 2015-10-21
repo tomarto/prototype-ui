@@ -26,7 +26,7 @@
         vm.openDatepicker = openDatepicker;
         vm.register = register;
 
-        function openDatepicker(registerForm) {
+        function openDatepicker() {
             vm.status.opened = true;
         }
 
