@@ -18,7 +18,7 @@
         .config(config);
 
     /* @ngInject */
-    function config($stateProvider, $urlRouterProvider) {
+    function config($stateProvider, $urlRouterProvider, $locationProvider) {
         $stateProvider
             .state('home', {
                 url: '/home',
@@ -42,11 +42,15 @@
                 controller: 'ActionCtrl',
                 controllerAs: 'actionCtrl',
                 resolve: {
-                    actions: function(actionFactory, $stateParams) {
+                    result: function(actionFactory, $stateParams) {
                         return actionFactory.getActions($stateParams.searchId);
                     }
                 }
             });
         $urlRouterProvider.otherwise('home');
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
     }
 })();

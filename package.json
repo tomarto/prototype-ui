@@ -2,6 +2,7 @@
   "name": "prototype",
   "private": true,
   "devDependencies": {
+    "connect-history-api-fallback": "^1.2.0",
     "grunt": "^0.4.5",
     "grunt-angular-templates": "^0.5.7",
     "grunt-autoprefixer": "^2.0.0",

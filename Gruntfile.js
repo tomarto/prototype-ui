@@ -19,6 +19,8 @@ module.exports = function (grunt) {
     cdnify: 'grunt-google-cdn'
   });
 
+  var historyApiFallback = require('connect-history-api-fallback');
+
   grunt.loadNpmTasks('grunt-connect-proxy');
 
   // Configurable paths for the application
@@ -95,6 +97,7 @@ module.exports = function (grunt) {
             }
 
             var middlewares = [
+              historyApiFallback(),
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',

@@ -49,13 +49,30 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
+			<div ng-class="searchActionsForm.rows.$dirty && searchActionsForm.rows.$invalid ? 'has-error' : ''">
+				<label for="rows" class="col-sm-2 control-label">Rows Per Page:</label>
+				<div class="col-sm-4">
+					<select id="rows" class="form-control" name="rows" ng-model="actionCtrl.data.rows" ng-options="rows for rows in actionCtrl.rows">
+					</select>
+	                <div role="alert">
+	                    <span class="error control-label" ng-show="searchActionsForm.rows.$dirty && searchActionsForm.rows.$invalid">Please select a valid option</span>
+	                </div>
+				</div>
+			</div>
+
+			<div class="col-sm-offset-2 col-sm-4">
 				<button class="btn btn-primary" ng-click="actionCtrl.search(searchActionsForm)" ng-disabled="searchActionsForm.$pristine || searchActionsForm.$invalid">Search</button>
 			</div>
 		</div>
 	</form>
 
 	<hr/>
+
+	<nav>
+		<ul class="pagination">
+			<li ng-repeat="i in actionCtrl.getNumber(actionCtrl.totalPages) track by $index" ng-class="actionCtrl.data.offset / actionCtrl.data.rows == $index ? 'active' : ''" ng-click="actionCtrl.changeOffset($index)"><a ng-href="#">{{$index + 1}}</a></li>
+		</ul>
+	</nav>
 
 	<div class="panel panel-default">
 		<div class="panel-heading">My Actions</div>
